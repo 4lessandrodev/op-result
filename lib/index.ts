@@ -127,15 +127,17 @@ export class Result<Success, Err = Error> extends State<Success, Err> {
         super(isOk, data, error);
     }
 
-    public static Ok<Success, Err = Error>(data?: Success): Payload<Success, Err>;
-    public static Ok<Success, Err = Error>(data: Success): Payload<Success, Err> {
+    public static Ok(): Payload<void, Error>;
+    public static Ok<Success, Err = Error>(data: Success): Payload<Success, Err>;
+    public static Ok<Success, Err = Error>(data?: Success): Payload<Success, Err> {
         const res = new Result<Success, Err>(true, data ?? null as Success, null as Err ) as Payload<Success, Err>;
         Result.LOGGER.log('Log: Ok - Data:' + JSON.stringify(res), 'Ok');
         return res;
     }
 
-    public static Fail<Err = Error, Success = any>(err?: Err): Payload<Success, Err>;
-    public static Fail<Err = Error, Success = any>(err: Error): Payload<Success, Err> {
+    public static Fail(): Payload<void, void>;
+    public static Fail<Err = Error, Success = any>(err: Err): Payload<Success, Err>;
+    public static Fail<Err = Error, Success = any>(err?: Error): Payload<Success, Err> {
         const res = new Result<Success, Err>(false, null as Success, err as Err) as Payload<Success, Err>;
         Result.LOGGER.log('Log: Fail - Error:' + JSON.stringify(res), 'Fail');
         return res;
