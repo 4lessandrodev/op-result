@@ -1,4 +1,4 @@
-# ts-result
+# op-result
 
 A lib to encapsute operation result and manage logs.
 ## Logs
