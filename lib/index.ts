@@ -122,12 +122,12 @@ abstract class State<Success, Err = Error> implements Payload<Success, Err> {
 
 export class Result<Success, Err = Error> extends State<Success, Err> {
     protected static LOGGER: ILogger = Logger.init();
-    private constructor(isOk: boolean, data: Success, error: Err) {
+    private constructor(isOk: boolean, data: Success, error: Err | null) {
         Result.LOGGER = Logger.init();
-        super(isOk, data, error);
+        super(isOk, data, error ?? null);
     }
 
-    public static Ok(): Payload<void, Error>;
+    public static Ok(): Payload<void, void>;
     public static Ok<Success, Err = Error>(data: Success): Payload<Success, Err>;
     public static Ok<Success, Err = Error>(data?: Success): Payload<Success, Err> {
         const res = new Result<Success, Err>(true, data ?? null as Success, null as Err ) as Payload<Success, Err>;
@@ -143,7 +143,7 @@ export class Result<Success, Err = Error> extends State<Success, Err> {
         return res;
     }
 
-    public static Combine(results: Array<Payload<any>>): Payload<any> {
+    public static Combine(results: Array<Payload<any>>): Payload<any, any> {
         if(results.length === 0) return Ok();
         let i = 0;
         while(results[i]) { 

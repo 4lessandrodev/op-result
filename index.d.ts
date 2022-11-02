@@ -32,11 +32,11 @@ declare abstract class State<Success, Err = Error> implements Payload<Success, E
 export declare class Result<Success, Err = Error> extends State<Success, Err> {
     protected static LOGGER: ILogger;
     private constructor();
-    static Ok(): Payload<void, Error>;
+    static Ok(): Payload<void, void>;
     static Ok<Success, Err = Error>(data: Success): Payload<Success, Err>;
     static Fail(): Payload<void, void>;
     static Fail<Err = Error, Success = any>(err: Err): Payload<Success, Err>;
-    static Combine(results: Array<Payload<any>>): Payload<any>;
+    static Combine(results: Array<Payload<any>>): Payload<any, any>;
 }
 export declare const Ok: typeof Result.Ok, Fail: typeof Result.Fail, Combine: typeof Result.Combine;
 export default Result;

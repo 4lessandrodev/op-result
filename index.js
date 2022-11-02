@@ -94,7 +94,7 @@ class State {
 class Result extends State {
     constructor(isOk, data, error) {
         Result.LOGGER = Logger.init();
-        super(isOk, data, error);
+        super(isOk, data, error ?? null);
     }
     static Ok(data) {
         const res = new Result(true, data ?? null, null);
