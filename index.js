@@ -97,7 +97,7 @@ class Result extends State {
         super(isOk, data, error);
     }
     static Ok(data) {
-        const res = new Result(true, data, null);
+        const res = new Result(true, data ?? null, null);
         Result.LOGGER.log('Log: Ok - Data:' + JSON.stringify(res), 'Ok');
         return res;
     }

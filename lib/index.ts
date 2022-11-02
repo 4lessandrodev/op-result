@@ -129,7 +129,7 @@ export class Result<Success, Err = Error> extends State<Success, Err> {
 
     public static Ok<Success, Err = Error>(data?: Success): Payload<Success, Err>;
     public static Ok<Success, Err = Error>(data: Success): Payload<Success, Err> {
-        const res = new Result<Success, Err>(true, data, null as Err ) as Payload<Success, Err>;
+        const res = new Result<Success, Err>(true, data ?? null as Success, null as Err ) as Payload<Success, Err>;
         Result.LOGGER.log('Log: Ok - Data:' + JSON.stringify(res), 'Ok');
         return res;
     }
