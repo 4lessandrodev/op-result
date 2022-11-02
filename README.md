@@ -16,7 +16,7 @@ First you need to have an operation like example below
 
 ```ts
 
-import { Payload, Ok, Fail, Error } from 'ts-result';
+import { Payload, Ok, Fail, Error } from 'op-result';
 
 class MyOperation {
 
@@ -57,7 +57,7 @@ Lets see an example to signup
 
 ```ts
 
-import { Payload, Ok, Fail, Error } from 'ts-result';
+import { Payload, Ok, Fail, Error } from 'op-result';
 
 class SignUp {
 
@@ -98,7 +98,7 @@ You can check many results state with combine
 
 ```ts
 
-import { Ok, Fail, Combine } from 'ts-result';
+import { Ok, Fail, Combine } from 'op-result';
 
 const resultsA = [ Ok(), Ok(), Ok() ];
 
